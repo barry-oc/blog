@@ -57,12 +57,6 @@ plugins:
       pagination: true
       pagination_per_page: 5
       authors_file: blog/.authors.yml
-  - rss:
-      match_path: "blog/posts/.*"
-      date_from_meta:
-        as_creation: date
-      categories:
-        - categories
   - search
   - social:
       cards: true
