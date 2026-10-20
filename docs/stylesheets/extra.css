@@ -13,7 +13,7 @@
 }
 
 .md-typeset {
-  font-size: 0.8rem;
+  font-size: 0.68rem;
   line-height: 1.6;
 }
 
@@ -21,7 +21,7 @@
 .md-typeset h1 {
   font-weight: 700;
   letter-spacing: -0.02em;
-  font-size: 1.8em;
+  font-size: 1.35em;
   margin-bottom: 0.4em;
 }
 
@@ -72,7 +72,7 @@
 
 /* Post meta */
 .md-post__meta {
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   opacity: 0.85;
 }
 
@@ -138,7 +138,7 @@
 
 /* ===== Homepage hero ===== */
 .md-typeset h1#barry-ocallaghan {
-  font-size: 2em;
+  font-size: 1.4em;
   font-weight: 800;
   letter-spacing: -0.03em;
   background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%);
@@ -163,7 +163,7 @@
   border-radius: 9999px;
   background: rgba(34, 211, 238, 0.12);
   color: var(--md-accent-fg-color);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
   text-decoration: none;
   line-height: 1.6;
@@ -204,5 +204,5 @@
 
 .md-footer-meta .md-copyright {
   color: rgba(255, 255, 255, 0.65);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
 }
