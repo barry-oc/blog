@@ -22,6 +22,12 @@
   url = "https://github.com/barry-oc"
   weight = 30
 
+[[main]]
+  name = "RSS"
+  pre = "rss"
+  url = "/index.xml"
+  weight = 40
+
 # -- Footer Menu --
 # Displayed at the bottom of the page.
 
@@ -44,3 +50,9 @@
   name = "GitHub"
   url = "https://github.com/barry-oc"
   weight = 30
+
+[[footer]]
+  name = "RSS"
+  pre = "rss"
+  url = "/index.xml"
+  weight = 40

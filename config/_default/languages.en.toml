@@ -21,4 +21,5 @@ title = "Barry O'Callaghan"
     { email = "me@barryocallaghan.com" },
     { github = "https://github.com/barry-oc" },
     { linkedin = "https://www.linkedin.com/in/barryocallaghan/" },
+    { rss = "https://barryocallaghan.com/index.xml" },
   ]
