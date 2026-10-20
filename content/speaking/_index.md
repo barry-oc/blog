@@ -39,6 +39,20 @@ if you'd like me to speak at your event.*
 
 ---
 
+## Blog posts & publications
+
+### Blog
+
+- [The Day Encryption Stops Working](/posts/q-day/) — the quantum threat in plain language (Part 1 of the *Post-Quantum Cryptography* series)
+- [sec-headers: Audit Your Security Headers in One Command](/posts/sec-headers-launch/) — check your site's security headers in one command
+- [vt-scanner: Check Any File Against VirusTotal in One Command](/posts/vt-scanner-launch/) — scan any file against VirusTotal
+
+### Publications
+
+- *Post-quantum cryptography — a practitioner's guide.* Forthcoming.
+
+---
+
 ## Booking
 
 I'm available for keynotes, panels, workshops, and private training sessions.
