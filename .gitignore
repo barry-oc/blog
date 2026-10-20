@@ -1,4 +1,7 @@
-public/
-resources/
-.hugo_build.lock
-node_modules/
+site/
+.cache/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store

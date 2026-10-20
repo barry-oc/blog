@@ -1,0 +1,68 @@
+site_name: Barry O'Callaghan
+site_url: https://barryocallaghan.com/
+site_description: Cybersecurity tools, research, and writeups.
+repo_url: https://github.com/barry-oc/blog
+repo_name: barry-oc/blog
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - blog:
+      blog_dir: blog
+  - search
+  - social:
+      cards: true
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+
+nav:
+  - Home: index.md
+  - Blog:
+      - blog/index.md
+  - Projects: projects.md
+  - About: about.md
+  - Contact: contact.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/barry-oc
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/barry-oc
+  generator: false

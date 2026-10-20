@@ -1,9 +1,4 @@
----
-title: "Contact"
-date: "2026-10-20"
-layout: "single"
-showToc: false
----
+# Contact
 
 The best ways to reach me:
 
