@@ -38,14 +38,6 @@ site is where I share tools, writeups, and analysis — no hype, no vendor fluff
 - **Security leadership** — strategy, governance, and international delivery
 - **Education** — developing the next generation (CISSP, CCSP, AI strategy)
 
-## Background
-
-- **PwC Japan** — Senior Manager, Cyber Security (2024–present); Cyber Security Manager (2019–2021)
-- **Deloitte** — Specialist Leader / Specialist Master (2021–2024)
-- **Nomura** — Senior Information Security Engineer (2018–2019)
-- **ISC2** — Authorized Instructor, AI Strategy / CISSP / CCSP
-- **Royal Holloway, University of London** — MSc Cyber Security
-
 ## Featured projects
 
 <div class="grid cards" markdown>
