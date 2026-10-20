@@ -16,7 +16,3 @@ pip install sec-headers
 ```
 
 → [GitHub](https://github.com/barry-oc/sec-headers) · [Blog post →](/blog/2026/10/20/sec-headers-audit-your-security-headers-in-one-command/)
-
----
-
-*More projects coming soon. I ship one new tool per week.*
