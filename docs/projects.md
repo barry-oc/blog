@@ -15,7 +15,7 @@ website. Pairs nicely with subfinder, httpx, or your bug bounty workflow.
 pip install sec-headers
 ```
 
-→ [GitHub](https://github.com/barry-oc/sec-headers) · [Blog post →](/blog/2026/10/20/sec-headers-launch/)
+→ [GitHub](https://github.com/barry-oc/sec-headers) · [Blog post →](/blog/2026/10/20/sec-headers-audit-your-security-headers-in-one-command/)
 
 ---
 
