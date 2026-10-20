@@ -1,0 +1,83 @@
+baseURL = "https://barryocallaghan.com/"
+languageCode = "en-us"
+title = "Barry O'Callaghan"
+theme = "papermod-theme"
+enableEmoji = true
+enableRobotsTXT = true
+
+[params]
+  author = "Barry O'Callaghan"
+  description = "Cybersecurity professional. Building tools, breaking things, and sharing what I learn."
+  keywords = ["cybersecurity", "infosec", "security", "python", "pentesting", "blue team"]
+  defaultTheme = "dark"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowToc = true
+  ShowWordCount = true
+
+  [params.profileMode]
+    enabled = true
+    title = "Barry O'Callaghan"
+    subtitle = "Cybersecurity tools, research, and writeups."
+    imageUrl = "/avatar.png"
+
+    [[params.profileMode.buttons]]
+      name = "Blog"
+      url = "/posts"
+
+    [[params.profileMode.buttons]]
+      name = "Projects"
+      url = "/projects"
+
+    [[params.profileMode.buttons]]
+      name = "About"
+      url = "/about"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/barry-oc"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/barry-oc"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:barry@bop-cyber.io"
+
+  [params.assets]
+    disableHLJS = false
+    favicon = "/favicon.ico"
+    favicon16x16 = "/favicon-16x16.png"
+    favicon32x32 = "/favicon-32x32.png"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[markup.highlight]
+  style = "dracula"
+  noClasses = false
+
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 20
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 30
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 40
