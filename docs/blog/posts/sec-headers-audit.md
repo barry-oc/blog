@@ -1,5 +1,7 @@
 ---
 date: 2026-10-20
+authors:
+  - barry
 categories:
   - tools
   - security-headers
@@ -18,7 +20,7 @@ Python CLI that audits seven critical HTTP security headers on any website
 and gives you a straight A+ through F grade. Here's how it works and why you
 should run it on your own stuff.
 
----
+![sec-headers](/assets/images/covers/sec-headers.svg)
 
 ## The seven headers that matter
 

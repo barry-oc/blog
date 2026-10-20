@@ -146,3 +146,63 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ===== Cover images (post banners) ===== */
+.md-typeset img[src*="/covers/"] {
+  border-radius: 12px;
+  width: 100%;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Category / tag pills ===== */
+.md-post__action a {
+  display: inline-block;
+  padding: 0.15em 0.65em;
+  border-radius: 9999px;
+  background: rgba(34, 211, 238, 0.12);
+  color: var(--md-accent-fg-color);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.6;
+}
+
+.md-post__action a:hover {
+  background: rgba(34, 211, 238, 0.28);
+}
+
+/* ===== Author card ===== */
+.md-author {
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  background: rgba(128, 128, 128, 0.03);
+}
+
+.md-author img {
+  border-radius: 50%;
+}
+
+/* ===== Grid cards (featured) ===== */
+.grid.cards li {
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.grid.cards li:hover {
+  border-color: var(--md-accent-fg-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Footer ===== */
+.md-footer-meta {
+  padding: 1rem 0;
+}
+
+.md-footer-meta .md-copyright {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.8rem;
+}

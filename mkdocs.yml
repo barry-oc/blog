@@ -3,9 +3,12 @@ site_url: https://barryocallaghan.com/
 site_description: Cybersecurity tools, research, and writeups.
 repo_url: https://github.com/barry-oc/blog
 repo_name: barry-oc/blog
+copyright: Copyright &copy; 2026 Barry O'Callaghan
 
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/favicon.svg
   font:
     text: Inter
     code: JetBrains Mono
@@ -27,6 +30,8 @@ theme:
     - navigation.tracking
     - navigation.tabs
     - navigation.top
+    - navigation.progress
+    - toc.follow
     - content.code.copy
     - content.code.annotate
   icon:
@@ -34,6 +39,9 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/giscus.js
 
 plugins:
   - blog:
@@ -47,6 +55,8 @@ plugins:
       categories_url_format: "category/{slug}"
       pagination: true
       pagination_per_page: 5
+      authors_file: blog/.authors.yml
+      generate_feed: true
   - search
   - social:
       cards: true
@@ -59,6 +69,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - admonition
   - pymdownx.details
   - attr_list

@@ -1,5 +1,7 @@
 ---
 date: 2026-10-20
+authors:
+  - barry
 categories:
   - tools
   - virus-total
@@ -18,7 +20,7 @@ automates the entire workflow. Point it at a directory and it hashes every
 file, checks VirusTotal, caches results, and tells you what's clean and what's
 not. No browser tabs, no copy-paste, no wasted API calls.
 
----
+![vt-scanner](/assets/images/covers/vt-scanner.svg)
 
 ## What it does
 
