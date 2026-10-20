@@ -7,6 +7,11 @@
   weight = 10
 
 [[main]]
+  name = "Speaking"
+  pageRef = "speaking"
+  weight = 15
+
+[[main]]
   name = "Projects"
   url = "/projects/"
   weight = 20
@@ -24,6 +29,11 @@
   name = "Blog"
   pageRef = "posts"
   weight = 10
+
+[[footer]]
+  name = "Speaking"
+  pageRef = "speaking"
+  weight = 15
 
 [[footer]]
   name = "Projects"
