@@ -7,6 +7,7 @@ autoSwitchAppearance = true
 
 enableSearch = true
 enableCodeCopy = true
+enableA11y = true
 enableStructuredBreadcrumbs = false
 
 mainSections = ["posts"]
@@ -19,6 +20,7 @@ smartTOC = true
 smartTOCHideUnfocusedChildren = false
 
 fingerprintAlgorithm = "sha512"
+defaultSocialImage = "img/social.svg"
 
 [header]
   layout = "fixed" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
@@ -46,6 +48,7 @@ fingerprintAlgorithm = "sha512"
   showEdit = false
   showReadingTime = true
   showTableOfContents = true
+  showHeadingAnchors = true
   showTaxonomies = true
   showWordCount = true
   showRelatedContent = true

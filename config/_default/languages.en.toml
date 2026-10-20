@@ -8,6 +8,7 @@ title = "Barry O'Callaghan"
   isoCode = "en"
   rtl = false
   dateFormat = "2 January 2006"
+  logo = "img/logo.svg"
   description = "Cybersecurity tools, research, and writeups."
 
 [params.author]
@@ -15,7 +16,7 @@ title = "Barry O'Callaghan"
   email = "me@barryocallaghan.com"
   image = "img/avatar.svg"
   headline = "Senior Manager @ PwC · Cyber & Information Security · Authorized Instructor @ ISC2"
-  bio = "Cybersecurity leader in Tokyo. Building tools, breaking things, and sharing what I learn."
+  bio = "Cybersecurity leader in Tokyo, Japan. Building open-source security tools and sharing what I learn."
   links = [
     { email = "me@barryocallaghan.com" },
     { github = "https://github.com/barry-oc" },

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0f2a43"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="80" width="150" height="150" rx="30" fill="url(#accent)"/>
+  <text x="155" y="184" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="86" font-weight="800" fill="#0b1220">B</text>
+  <text x="265" y="175" font-family="Inter, system-ui, sans-serif" font-size="62" font-weight="700" fill="#ffffff">Barry O&apos;Callaghan</text>
+  <text x="265" y="236" font-family="Inter, system-ui, sans-serif" font-size="31" fill="#94a3b8">Cybersecurity tools, research, and writeups.</text>
+  <rect x="80" y="500" width="1040" height="2" fill="#1e3a5f"/>
+</svg>
