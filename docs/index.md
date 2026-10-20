@@ -18,7 +18,6 @@ hide:
 
 [📰 Blog](blog/){ .md-button .md-button--primary }
 [🛠️ Projects](projects/){ .md-button }
-[👤 About](about/){ .md-button }
 
 <br>
 
