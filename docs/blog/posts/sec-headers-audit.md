@@ -133,16 +133,6 @@ Bust the build if your staging environment drops HSTS during a deploy.
 
 ---
 
-## What's next
-
-I'm shipping one tool a week. On the shortlist:
-
-- `--diff` mode — compare headers before and after a config change
-- Additional header checks (`Clear-Site-Data`, `Cross-Origin-*`)
-- Docker image for ephemeral CI use
-
----
-
 **Run it on your own site.** [github.com/barry-oc/sec-headers](https://github.com/barry-oc/sec-headers)
 
 Pull requests and bug reports welcome.
