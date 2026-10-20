@@ -46,4 +46,4 @@ Visit the **[Blog →](blog/)** for the full archive.
 
 [:fontawesome-brands-github: GitHub](https://github.com/barry-oc){ .md-button }
 [:fontawesome-brands-linkedin: LinkedIn](https://www.linkedin.com/in/barryocallaghan/){ .md-button }
-[:material-email: Email](mailto:barry@bop-cyber.io){ .md-button }
+[:material-email: Email](mailto:me@barryocallaghan.com){ .md-button }
