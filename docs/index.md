@@ -40,9 +40,3 @@ Visit the **[Blog →](blog/)** for the full archive.
 - **[sec-headers](https://github.com/barry-oc/sec-headers)** — audit HTTP security headers in one command
 - Weekly tool releases and deep-dive writeups
 - Detection engineering and automation projects
-
----
-
-[🔗 GitHub](https://github.com/barry-oc){ .md-button }
-[💼 LinkedIn](https://www.linkedin.com/in/barryocallaghan/){ .md-button }
-[📧 Email](mailto:me@barryocallaghan.com){ .md-button }
