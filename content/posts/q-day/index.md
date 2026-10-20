@@ -5,160 +5,132 @@ draft: false
 series: ["Post-Quantum Cryptography"]
 tags: ["quantum-computing", "cryptography", "post-quantum-cryptography", "security-strategy"]
 categories: ["cryptography"]
-description: "Nobody will send you a CVE when the locks break. The quantum threat is silent, patient, and already underway — here's what's actually at stake."
+description: "A plain-language look at what changes when quantum computers can break today's encryption — and why long-lived data needs attention now."
 ---
 
 {{< alert "info" >}}
-This is **Part 1** of the *Post-Quantum Cryptography* series — a practical guide
-for security practitioners who need to understand what's coming, why it matters,
-and what to do about it.
+This is **Part 1** of the *Post-Quantum Cryptography* series — a plain-language
+guide to what's coming, why it matters, and what to do about it.
 {{< /alert >}}
 
-Every security problem you deal with announces itself. A login from Belarus at
-3am. A port you forgot to close. A payload buried in a spreadsheet macro. The
-signals are there — noisy, detectable, often reversible if you move fast enough.
+Most security problems announce themselves. A suspicious login, a port left
+open, a file where it shouldn't be. You get a signal, and usually a chance to
+respond.
 
-Quantum computing won't send a signal. It won't leave a log entry. One day, the
-math that protects your TLS sessions, your signed firmware, and your payment
-gateways will simply stop being math you can trust. No alert. No patch Tuesday
-for this one. Just a quiet collapse of the assumptions your entire stack rests
-on.
-
-The window to act is open now. It won't be forever.
+Quantum computing doesn't work that way. There's no alert, no patch, and no log
+entry. One day, the math that quietly protects a lot of everyday technology —
+secure websites, signed software, encrypted messages — will simply stop being
+reliable. It's worth understanding what that means before it happens, because
+the fix can't be rushed at the last minute.
 
 ---
 
-## A different kind of machine
+## What makes quantum computers different
 
-You don't need to understand superposition to grasp why this matters. You just
-need to understand that these machines reason about problems in a fundamentally
-different way than anything silicon has ever done.
+You don't need to understand the physics. The idea that matters is small: these
+machines don't work through problems one step at a time the way normal computers
+do.
 
-Picture a maze. A classical processor walks every corridor, one turn at a time,
-retracing its steps at each dead end until it finds the exit. It's fast —
-insanely fast — but it's still sequential. One path, then the next.
+Think of a maze. A normal computer walks one path at a time — down a corridor,
+back up, try the next — until it finds the way out. A quantum computer explores
+every path at once and settles on the answer.
 
-A quantum processor doesn't walk the maze. It floods it. Every corridor,
-simultaneously explored. The moment you look — the moment you measure — the
-answer crystallises from that superposition of possibilities. You don't get
-every path traced out. You get the one that matters.
-
-For most workloads, this distinction is academically interesting. For
-factorisation — the mathematical spine of RSA, ECC, and the public-key
-cryptosystems securing the internet — it's catastrophic. Problems that would
-take classical machines longer than the age of the universe collapse into
-something a sufficiently large quantum computer can crack in hours.
+For most tasks, that difference is only interesting. But for the specific math
+that protects most of our online security — the kind behind the padlock in your
+browser, digital signatures, and secure messaging — it's a serious problem.
+Problems that would take a normal computer billions of years to solve become
+quick work for a large enough quantum machine.
 
 ---
 
-## Nobody agrees on the timeline, and it doesn't matter
+## When might this happen?
 
-The shorthand for this threshold is **Q-Day**: the point at which a quantum
-computer can reliably break the asymmetric encryption protecting nearly every
-digital transaction on earth. HTTPS, code signing, VPN handshakes, certificate
-authorities — all of it runs on math that quantum renders irrelevant.
+The point at which a quantum computer becomes strong enough to break today's
+encryption is often called **Q-Day**. Estimates vary widely — some say the
+2030s, others the 2040s.
 
-Forecasts bounce between 2030 and 2040. The arguments are energetic. They're
-also beside the point.
-
-Ask yourself how long the data you protect needs to stay protected. A credit
-card number? Maybe a few years. A classified diplomatic cable? Decades. A
-pharmaceutical patent? The lifetime of the drug, plus litigation. Health
-records, land titles, biometric templates — these carry multi-decade shelf
-lives. If you hold anything that needs to remain confidential past 2035, **the
-risk window is already open**. You don't get to wait for consensus. The
-adversary's planning horizon doesn't care about academic disagreement.
+The exact date matters less than it seems. Think about how long the data you
+protect needs to stay private. A credit card number might only matter for a few
+years. A patient's medical record, a legal contract, or a government document
+may need to stay confidential for decades. If you hold that kind of information,
+the timeline is already relevant to you — whichever forecast turns out to be
+right.
 
 ---
 
-## They're already collecting
+## A problem that's already started
 
-The most dangerous dimension of the quantum threat isn't future-facing. It's
-retrospective.
+There's a second part to the risk that's easy to miss: encrypted data can be
+saved today and unlocked later. An attacker doesn't need a working quantum
+computer to begin. They can collect encrypted information now and hold onto it
+until the tools catch up.
 
-**Harvest Now, Decrypt Later** — HNDL — is not a theoretical attack. State-level
-operators are running it right now. The playbook is brutally simple: intercept
-encrypted traffic at scale, warehouse it, and wait. When the compute becomes
-available, every byte of that stored ciphertext becomes plaintext. No re-keying
-helps. No rotation saves you. The data already left the building.
+This has a name — **harvest now, decrypt later** — and it's already happening.
+The idea is straightforward: intercept encrypted traffic or copy encrypted files
+today, store them, and decrypt them once quantum computers are available.
+Re-encrypting your data now doesn't undo it, because the old copy is already
+out there.
 
-What makes this particularly ugly is how it inverts the standard security
-calculus. Encryption has always been the thing you deploy and stop worrying
-about — data at rest, problem solved. HNDL turns that inside out. Encryption
-becomes a *deferred vulnerability*. The stronger your adversaries believe your
-secrets will hold value over time, the more aggressively they hoard them.
+It changes how we should think about encryption. Most of us treat it as "turn it
+on and forget it" — data encrypted, job done. But if data needs to stay private
+for a long time and was protected with today's methods, it becomes a problem
+waiting for the right tool to arrive.
 
-The shopping list is predictable once you think about it:
+What gets collected is predictable: anything that keeps its value over time.
 
-| Adversary profile | What they're siphoning |
-|---|---|
-| **Nation-state** | Diplomatic traffic, defence contractor comms, intelligence reporting, critical-infrastructure telemetry |
-| **Industrial espionage** | R&D pipelines, patent filings, M&A documents, source code repositories |
-| **Financial crime** | SWIFT messages, clearing-house settlements, high-net-worth transaction histories |
-| **Long-game identity theft** | Biometric databases, national ID registries, health records, genetic profiles |
+- **Medical records and insurance details** — relevant for a person's whole life.
+- **Legal documents and contracts** — often significant for decades.
+- **Financial records** — payment details, account information, transaction history.
+- **Everyday logins and messages** — credentials and private conversations.
 
-And the crown jewel: **public key infrastructure itself**. Harvest enough
-certificate chains today, and you can retroactively forge signatures,
-impersonate certificate authorities, and sign malicious binaries that every
-client will trust. The PKI trust model has no undo button.
-
-HNDL exploits are already amplified by the existing rot in our certificate
-ecosystem — misconfigured chains, stale revocations, downgrade attacks forcing
-connections onto deprecated cipher suites. These aren't quantum problems. They're
-hygiene problems that quantum turns into catastrophe problems.
+One area worth particular attention is **digital certificates** — the system
+that confirms a website is really what it claims to be, and that software
+updates come from the people they say they do. If an attacker can forge these,
+they could impersonate legitimate services or push out fake updates that look
+genuine. That's a much bigger deal than any single stolen password.
 
 ---
 
-## This isn't about reading someone's email
+## What actually breaks
 
-It's tempting to frame the quantum threat as a confidentiality problem. That's
-the easy mental model: encrypted data → decrypted data → privacy violated.
+It's easy to see this as a privacy problem: encrypted data becomes readable, so
+secrets get exposed. That's part of it, but not the most important part.
 
-But that misses the actual damage radius. What collapses when asymmetric
-cryptography fails is not privacy. It's **provability**.
+The bigger issue is trust. Digital signatures prove who sent a message.
+Certificates prove you're talking to the real website. Code signing proves
+software hasn't been tampered with. These are the mechanisms that let people do
+business online without meeting face to face.
 
-Digital signatures prove who sent what. Certificate chains prove who you're
-talking to. Code-signing proves a binary hasn't been tampered with. Every
-mechanism that lets two parties transact without first meeting in a physically
-secure room depends on cryptographic assurances that quantum computing
-dissolves.
+When they stop being reliable, you don't just get a data leak. You get:
 
-When those assurances fail, you don't get a data breach. You get:
+- **Documents that can't be verified.** A contract, a court filing, or a
+  notarised record could have been altered — and there'd be no cryptographic way
+  to prove it either way.
+- **Fake websites that look genuine.** The certificate check passes, so there's
+  no warning.
+- **Software updates that can't be trusted.** The signature no longer proves the
+  update is what the vendor actually shipped.
 
-- **Retroactive forgery.** Contracts, court filings, notarised documents —
-  signed years ago, contested tomorrow, with no cryptographic way to settle the
-  dispute.
-- **Silent impersonation.** An attacker who harvested a certificate chain can
-  now stand up a server that every browser trusts unconditionally. The green
-  lock becomes meaningless.
-- **Compromised supply chains.** Firmware updates, OS patches, container
-  images — all signed by keys an attacker can now forge. The update mechanism
-  becomes the attack vector, and the signature that was supposed to prevent it
-  becomes the proof that makes it undetectable.
-
-The uncomfortable part is that the raw material for most of these attacks —
-encrypted traffic, certificate chains, signed artifacts — has been quietly
-accumulating for years. Adversaries aren't waiting for Q-Day to start their
-campaign. They're waiting for Q-Day to *finish* it.
+To be clear: none of this is happening at scale today. The point is that the raw
+material for these problems — encrypted traffic, certificates, signed files — is
+being collected now, so the pieces are in place when the capability arrives.
 
 ---
 
-## What's actually worth protecting
+## Where to start
 
-The practical response to all of this is not panic. It's inventory.
+The practical response isn't panic. It's a checklist.
 
-Figure out which of your systems depend on asymmetric cryptography — and more
-importantly, which ones depend on it in ways you can't rapidly re-key.
-Identify the assets whose compromise five or ten years from now would still
-inflict real damage. Those are the ones that need post-quantum migration first.
+Start by finding where you rely on the kind of encryption that's at risk — the
+public-key cryptography behind certificates, signatures, and secure connections.
+Then identify which of those things would still matter if they were compromised
+five or ten years from now. Those are the ones to address first.
 
-The rest of this series will cover what that migration looks like: which
-algorithms NIST has standardised, how to test them in your own environments,
-and where the operational pitfalls live. **Part 2** picks up with the algorithm
-landscape — what's been selected, what's been broken, and which ones you should
-actually bet on. For now, the takeaway is simpler than
-most people want to admit:
+The rest of this series walks through that migration: which replacement
+algorithms NIST has standardised, how to test them in your own systems, and
+where the practical pitfalls are. **Part 2** covers the algorithm landscape —
+what's been chosen, what's been broken, and which ones to bet on.
 
-**The attack surface exists today. The data is already being collected. The
-only variable you control is whether your systems are quantum-resistant before
-the decryption campaign begins — or after.**
+The short version: the risk is real but manageable. The work is to find the
+things that need protecting long-term, and start moving them to quantum-resistant
+encryption before the old methods stop working.
