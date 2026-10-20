@@ -2,10 +2,17 @@
 title: "The Day Encryption Stops Working"
 date: 2026-10-20
 draft: false
+series: ["Post-Quantum Cryptography"]
 tags: ["quantum-computing", "cryptography", "post-quantum-cryptography", "security-strategy"]
 categories: ["cryptography"]
 description: "Nobody will send you a CVE when the locks break. The quantum threat is silent, patient, and already underway — here's what's actually at stake."
 ---
+
+{{< alert "info" >}}
+This is **Part 1** of the *Post-Quantum Cryptography* series — a practical guide
+for security practitioners who need to understand what's coming, why it matters,
+and what to do about it.
+{{< /alert >}}
 
 Every security problem you deal with announces itself. A login from Belarus at
 3am. A port you forgot to close. A payload buried in a spreadsheet macro. The
@@ -146,8 +153,10 @@ Identify the assets whose compromise five or ten years from now would still
 inflict real damage. Those are the ones that need post-quantum migration first.
 
 The rest of this series will cover what that migration looks like: which
-algorithms are being standardised, how to test them in your own environments,
-and where the operational pitfalls live. For now, the takeaway is simpler than
+algorithms NIST has standardised, how to test them in your own environments,
+and where the operational pitfalls live. **Part 2** picks up with the algorithm
+landscape — what's been selected, what's been broken, and which ones you should
+actually bet on. For now, the takeaway is simpler than
 most people want to admit:
 
 **The attack surface exists today. The data is already being collected. The
