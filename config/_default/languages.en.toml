@@ -1,0 +1,23 @@
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "Barry O'Callaghan"
+
+[params]
+  displayName = "English"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  description = "Cybersecurity tools, research, and writeups."
+
+[params.author]
+  name = "Barry O'Callaghan"
+  email = "me@barryocallaghan.com"
+  image = "img/avatar.svg"
+  headline = "Senior Manager @ PwC · Cyber & Information Security · Authorized Instructor @ ISC2"
+  bio = "Cybersecurity leader in Tokyo. Building tools, breaking things, and sharing what I learn."
+  links = [
+    { email = "me@barryocallaghan.com" },
+    { github = "https://github.com/barry-oc" },
+    { linkedin = "https://www.linkedin.com/in/barryocallaghan/" },
+  ]

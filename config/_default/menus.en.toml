@@ -1,0 +1,36 @@
+# -- Main Menu --
+# Displayed in the header at the top of the page.
+
+[[main]]
+  name = "Blog"
+  pageRef = "posts"
+  weight = 10
+
+[[main]]
+  name = "Projects"
+  url = "/projects/"
+  weight = 20
+
+[[main]]
+  name = "GitHub"
+  pre = "github"
+  url = "https://github.com/barry-oc"
+  weight = 30
+
+# -- Footer Menu --
+# Displayed at the bottom of the page.
+
+[[footer]]
+  name = "Blog"
+  pageRef = "posts"
+  weight = 10
+
+[[footer]]
+  name = "Projects"
+  url = "/projects/"
+  weight = 20
+
+[[footer]]
+  name = "GitHub"
+  url = "https://github.com/barry-oc"
+  weight = 30
