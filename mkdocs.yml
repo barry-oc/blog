@@ -6,15 +6,18 @@ repo_name: barry-oc/blog
 
 theme:
   name: material
+  font:
+    text: Inter
+    code: JetBrains Mono
   palette:
     - scheme: slate
-      primary: indigo
+      primary: custom
       accent: cyan
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
     - scheme: default
-      primary: indigo
+      primary: custom
       accent: cyan
       toggle:
         icon: material/brightness-7
@@ -29,9 +32,22 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
+extra_css:
+  - stylesheets/extra.css
+
 plugins:
   - blog:
       blog_dir: blog
+      blog_toc: true
+      post_readtime: true
+      post_readtime_words_per_minute: 200
+      archive: true
+      archive_date_format: MMMM yyyy
+      categories: true
+      categories_slugify: !!python/name:pymdownx.slugs.slugify
+      categories_url_format: "category/{slug}"
+      pagination: true
+      pagination_per_page: 5
   - search
   - social:
       cards: true

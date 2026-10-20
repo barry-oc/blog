@@ -2,6 +2,8 @@
 date: 2026-10-20
 categories:
   - tools
+  - virus-total
+  - python
 ---
 
 # vt-scanner: Check Any File Against VirusTotal in One Command

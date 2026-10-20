@@ -1,0 +1,148 @@
+/* ===== Color scheme: custom "cyber" primary ===== */
+:root {
+  --md-primary-fg-color: #2563eb;
+  --md-primary-fg-color--light: #60a5fa;
+  --md-primary-fg-color--dark: #1e40af;
+  --md-accent-fg-color: #22d3ee;
+}
+
+/* ===== Typography ===== */
+:root {
+  --md-text-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --md-code-font: "JetBrains Mono", "SF Mono", "Fira Code", monospace;
+}
+
+.md-typeset {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* Headings */
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 2.2em;
+  margin-bottom: 0.4em;
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+  padding-bottom: 0.3em;
+  margin-top: 2em;
+}
+
+.md-typeset h3 {
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  margin-top: 1.6em;
+}
+
+/* ===== Blog post cards ===== */
+.md-post--excerpt {
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.2s ease;
+  background: rgba(128, 128, 128, 0.03);
+}
+
+.md-post--excerpt:hover {
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.md-post--excerpt h2 {
+  border-bottom: none;
+  margin-top: 0;
+  padding-bottom: 0;
+}
+
+.md-post--excerpt h2 a {
+  color: var(--md-typeset-color);
+  text-decoration: none;
+}
+
+.md-post--excerpt h2 a:hover {
+  color: var(--md-accent-fg-color);
+}
+
+/* Post meta */
+.md-post__meta {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+/* ===== Code blocks ===== */
+.md-typeset code {
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+.md-typeset pre > code {
+  border-radius: 8px;
+  font-size: 0.88em;
+  line-height: 1.6;
+}
+
+/* ===== Buttons ===== */
+.md-button {
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* ===== Inline links ===== */
+.md-typeset a {
+  text-decoration: underline;
+  text-decoration-color: rgba(34, 211, 238, 0.4);
+  text-underline-offset: 3px;
+}
+
+.md-typeset a:hover {
+  text-decoration-color: var(--md-accent-fg-color);
+}
+
+/* ===== Tables ===== */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.md-typeset table:not([class]) th {
+  background: rgba(37, 99, 235, 0.15);
+  font-weight: 600;
+}
+
+/* ===== Blockquote ===== */
+.md-typeset blockquote {
+  border-left: 4px solid var(--md-accent-fg-color);
+  border-radius: 0 8px 8px 0;
+  padding: 0.6rem 1rem;
+  background: rgba(128, 128, 128, 0.04);
+}
+
+/* ===== Admonitions ===== */
+.md-typeset .admonition {
+  border-radius: 8px;
+  border-left-width: 4px;
+}
+
+/* ===== Footer ===== */
+.md-footer {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ===== Homepage hero ===== */
+.md-typeset h1#barry-ocallaghan {
+  font-size: 3em;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

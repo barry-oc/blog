@@ -2,6 +2,8 @@
 date: 2026-10-20
 categories:
   - tools
+  - security-headers
+  - python
 ---
 
 # sec-headers: Audit Your Security Headers in One Command
