@@ -4,7 +4,7 @@ The best ways to reach me:
 
 - **Email** — [barry@bop-cyber.io](mailto:barry@bop-cyber.io)
 - **GitHub** — [github.com/barry-oc](https://github.com/barry-oc)
-- **LinkedIn** — [/in/barry-oc](https://linkedin.com/in/barry-oc)
+- **LinkedIn** — [/in/barryocallaghan](https://www.linkedin.com/in/barryocallaghan/)
 
 I'm open to:
 
