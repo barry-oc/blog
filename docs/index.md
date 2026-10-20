@@ -16,9 +16,9 @@ hide:
 
 <br>
 
-[Blog :material-newspaper:](blog/){ .md-button .md-button--primary }
-[Projects :material-code-braces:](projects/){ .md-button }
-[About :material-account:](about/){ .md-button }
+[📰 Blog](blog/){ .md-button .md-button--primary }
+[🛠️ Projects](projects/){ .md-button }
+[👤 About](about/){ .md-button }
 
 <br>
 
@@ -44,6 +44,6 @@ Visit the **[Blog →](blog/)** for the full archive.
 
 ---
 
-[:fontawesome-brands-github: GitHub](https://github.com/barry-oc){ .md-button }
-[:fontawesome-brands-linkedin: LinkedIn](https://www.linkedin.com/in/barryocallaghan/){ .md-button }
-[:material-email: Email](mailto:me@barryocallaghan.com){ .md-button }
+[🔗 GitHub](https://github.com/barry-oc){ .md-button }
+[💼 LinkedIn](https://www.linkedin.com/in/barryocallaghan/){ .md-button }
+[📧 Email](mailto:me@barryocallaghan.com){ .md-button }
