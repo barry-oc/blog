@@ -1,6 +1,5 @@
 ---
 hide:
-  - navigation
   - toc
 ---
 
@@ -11,10 +10,6 @@ hide:
 **Senior Manager @ PwC · Cyber & Information Security · Authorized Instructor @ ISC2**
 
 Tokyo, Japan
-
-[:material-newspaper: Blog](blog/){ .md-button .md-button--primary }
-[:material-code-braces: Projects](projects/){ .md-button }
-[:material-github: GitHub](https://github.com/barry-oc){ .md-button }
 
 </div>
 

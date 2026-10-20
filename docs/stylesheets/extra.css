@@ -136,6 +136,22 @@
   background: rgba(0, 0, 0, 0.2);
 }
 
+.md-footer-nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.md-footer-nav__link {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+.md-footer-nav__link:hover {
+  color: var(--md-accent-fg-color);
+}
+
 /* ===== Homepage hero ===== */
 .md-typeset h1#barry-ocallaghan {
   font-size: 1.4em;

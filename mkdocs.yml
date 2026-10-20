@@ -84,6 +84,7 @@ nav:
   - Blog:
       - blog/index.md
   - Projects: projects.md
+  - GitHub: https://github.com/barry-oc
 
 extra:
   social:

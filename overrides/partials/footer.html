@@ -1,0 +1,15 @@
+<footer class="md-footer">
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <nav class="md-footer-nav" aria-label="Footer navigation">
+        <a class="md-footer-nav__link" href="/blog/">Blog</a>
+        <a class="md-footer-nav__link" href="/projects/">Projects</a>
+        <a class="md-footer-nav__link" href="https://github.com/barry-oc" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+      {% include "partials/copyright.html" %}
+      {% if config.extra.social %}
+        {% include "partials/social.html" %}
+      {% endif %}
+    </div>
+  </div>
+</footer>
