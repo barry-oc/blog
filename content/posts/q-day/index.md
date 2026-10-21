@@ -8,128 +8,140 @@ categories: ["cryptography"]
 description: "A plain-language look at what changes when quantum computers can break today's encryption — and why long-lived data needs attention now."
 ---
 
-{{< alert "info" >}}
-This is **Part 1** of the *Post-Quantum Cryptography* series — a plain-language
-guide to what's coming, why it matters, and what to do about it.
-{{< /alert >}}
+Most threats in cybersecurity give you a sign. A phishing link lands in an
+inbox. A port scanner rattles the perimeter. A CVE drops with a severity score
+attached. Something happens, and you get a window to react.
 
-Most security problems announce themselves. A suspicious login, a port left
-open, a file where it shouldn't be. You get a signal, and usually a chance to
-respond.
+The quantum threat doesn't announce itself. It arrives as a change in physics
+that quietly undermines the mathematics holding up secure websites, signed
+software, encrypted communication, and most of the digital trust infrastructure
+the world runs on. There is no patch. There is no log entry. One day the
+algorithms stop being reliable, and by the time anyone notices, the data they
+were supposed to protect may have already been collected, stored, and broken.
 
-Quantum computing doesn't work that way. There's no alert, no patch, and no log
-entry. One day, the math that quietly protects a lot of everyday technology —
-secure websites, signed software, encrypted messages — will simply stop being
-reliable. It's worth understanding what that means before it happens, because
-the fix can't be rushed at the last minute.
-
----
-
-## What makes quantum computers different
-
-You don't need to understand the physics. The idea that matters is small: these
-machines don't work through problems one step at a time the way normal computers
-do.
-
-Think of a maze. A normal computer walks one path at a time — down a corridor,
-back up, try the next — until it finds the way out. A quantum computer explores
-every path at once and settles on the answer.
-
-For most tasks, that difference is only interesting. But for the specific math
-that protects most of our online security — the kind behind the padlock in your
-browser, digital signatures, and secure messaging — it's a serious problem.
-Problems that would take a normal computer billions of years to solve become
-quick work for a large enough quantum machine.
+This chapter is about understanding what that means before it happens. Because
+the migration away from vulnerable cryptography is not something you can
+compress into a weekend sprint after the fact.
 
 ---
 
-## When might this happen?
+## How quantum computers are different
 
-The point at which a quantum computer becomes strong enough to break today's
-encryption is often called **Q-Day**. Estimates vary widely — some say the
-2030s, others the 2040s.
+You don't need the physics. What matters is that these machines don't solve
+problems the way conventional computers do — one step, then the next, working
+through possibilities in sequence.
 
-The exact date matters less than it seems. Think about how long the data you
-protect needs to stay private. A credit card number might only matter for a few
-years. A patient's medical record, a legal contract, or a government document
-may need to stay confidential for decades. If you hold that kind of information,
-the timeline is already relevant to you — whichever forecast turns out to be
-right.
+Think of a combination lock. A classical computer tries each number in turn:
+0000, 0001, 0002, all the way up. A quantum computer, given the right
+algorithm, can explore all the combinations simultaneously and land on the
+answer.
+
+For most types of calculation, that's a curiosity. For the specific mathematics
+that secures nearly all online communication — the integer factorisation behind
+RSA, the discrete logarithm problem behind Diffie-Hellman and elliptic curve
+cryptography — it is a direct threat. Problems that would take a conventional
+machine longer than the age of the universe become solvable in practical
+timeframes on a large enough quantum device.
 
 ---
 
-## A problem that's already started
+## When this arrives
 
-There's a second part to the risk that's easy to miss: encrypted data can be
-saved today and unlocked later. An attacker doesn't need a working quantum
-computer to begin. They can collect encrypted information now and hold onto it
-until the tools catch up.
+The moment a quantum computer grows capable of breaking today's public-key
+cryptography is often called **Q-Day**. Forecasts range from the early 2030s to
+the late 2040s, depending on who you ask and which technical hurdles they expect
+to slow progress down.
 
-This has a name — **harvest now, decrypt later** — and it's already happening.
-The idea is straightforward: intercept encrypted traffic or copy encrypted files
-today, store them, and decrypt them once quantum computers are available.
-Re-encrypting your data now doesn't undo it, because the old copy is already
-out there.
+The precise year matters less than people assume. What matters is how long your
+data needs to stay private. A credit card number has a short shelf life. A
+patient's medical history, a corporate acquisition document, or a diplomatic
+cable might need to remain confidential for thirty years or more. If your
+organisation holds that kind of information, you are already inside the window
+where the data you protect today could be decrypted before its useful life is
+over — no matter which forecast turns out to be right.
 
-It changes how we should think about encryption. Most of us treat it as "turn it
-on and forget it" — data encrypted, job done. But if data needs to stay private
-for a long time and was protected with today's methods, it becomes a problem
-waiting for the right tool to arrive.
+---
 
-What gets collected is predictable: anything that keeps its value over time.
+## The attack that doesn't wait
 
-- **Medical records and insurance details** — relevant for a person's whole life.
-- **Legal documents and contracts** — often significant for decades.
-- **Financial records** — payment details, account information, transaction history.
-- **Everyday logins and messages** — credentials and private conversations.
+There is a second dimension to the risk that often gets overlooked, and it
+changes the urgency of the whole conversation.
 
-One area worth particular attention is **digital certificates** — the system
-that confirms a website is really what it claims to be, and that software
-updates come from the people they say they do. If an attacker can forge these,
-they could impersonate legitimate services or push out fake updates that look
-genuine. That's a much bigger deal than any single stolen password.
+Encrypted data can be copied now and decrypted later. An adversary does not need
+a working quantum computer to begin. They need access to encrypted traffic or
+stored ciphertext. They collect it. They hold it. When the capability arrives,
+they unlock it.
+
+This is called **harvest now, decrypt later**, and it is not theoretical.
+Nation-state actors have been recorded intercepting and archiving encrypted
+communications for years. The economics are straightforward: storage is cheap,
+and data that retains value for a decade or more is worth sitting on.
+
+It also means that upgrading your encryption today does not retroactively
+protect data that already left your network under older protection. If sensitive
+traffic was intercepted three years ago and stored, turning on post-quantum
+encryption tomorrow stops future collection but does nothing about the copy
+already sitting on someone else's disk.
+
+What gets harvested is predictable. Anything with long-term value:
+
+- **Medical and insurance records** — relevant for a person's lifetime.
+- **Legal documents and contracts** — significant for decades.
+- **Financial data** — accounts, transactions, settlement records.
+- **Credentials and private communications** — passwords, messages, internal
+  discussions.
+
+There is a particular risk around **digital certificates** — the infrastructure
+that verifies websites are who they claim to be and that software updates
+originate from the vendor that signed them. If an attacker can forge
+certificates, they can impersonate legitimate services or distribute
+authenticated malware. That's not a privacy breach. It's a trust failure across
+the entire system.
 
 ---
 
 ## What actually breaks
 
-It's easy to see this as a privacy problem: encrypted data becomes readable, so
-secrets get exposed. That's part of it, but not the most important part.
+It is tempting to frame this as a confidentiality problem: encrypted things
+become readable, so secrets leak. That is true, but it is the smaller half of
+the story.
 
-The bigger issue is trust. Digital signatures prove who sent a message.
-Certificates prove you're talking to the real website. Code signing proves
-software hasn't been tampered with. These are the mechanisms that let people do
-business online without meeting face to face.
+The larger half is integrity. Digital signatures prove provenance. Certificates
+prove identity. Code signing proves software hasn't been modified in transit.
+These are the mechanisms that let two parties who have never met do business
+online with confidence.
 
-When they stop being reliable, you don't just get a data leak. You get:
+When they stop working, the consequences extend well beyond exposed data:
 
-- **Documents that can't be verified.** A contract, a court filing, or a
-  notarised record could have been altered — and there'd be no cryptographic way
-  to prove it either way.
-- **Fake websites that look genuine.** The certificate check passes, so there's
-  no warning.
-- **Software updates that can't be trusted.** The signature no longer proves the
-  update is what the vendor actually shipped.
+- **Documents lose verifiability.** A legal agreement, a notarised record, or a
+  regulatory filing could have been altered — and there would be no
+  cryptographic way to settle the question.
+- **Impersonation becomes undetectable.** A forged certificate passes validation
+  because the underlying mathematics no longer distinguishes real from fake.
+- **Software updates become untrustworthy.** A signature that used to guarantee
+  a patch came from the vendor now tells you nothing.
 
-To be clear: none of this is happening at scale today. The point is that the raw
-material for these problems — encrypted traffic, certificates, signed files — is
-being collected now, so the pieces are in place when the capability arrives.
+None of this is happening at scale today. The point is that the raw material —
+encrypted traffic, signed binaries, certificate chains — is being stockpiled
+now. The pieces are already in position.
 
 ---
 
-## Where to start
+## Where to begin
 
-The practical response isn't panic. It's a checklist.
+The practical response is not panic. It's a sequence of deliberate steps.
 
-Start by finding where you rely on the kind of encryption that's at risk — the
-public-key cryptography behind certificates, signatures, and secure connections.
-Then identify which of those things would still matter if they were compromised
-five or ten years from now. Those are the ones to address first.
+Start by finding where your organisation relies on the kind of cryptography that
+quantum computers attack — the public-key algorithms behind TLS, digital
+signatures, key exchange, and certificate validation. Then ask the harder
+question: which of those protections would still matter if they failed five or
+ten years from now? The assets where the answer is yes are your priority list.
 
-The rest of this series walks through that migration: which replacement
-algorithms NIST has standardised, how to test them in your own systems, and
-where the practical pitfalls are.
+The chapters that follow walk through that migration: locating your
+cryptographic dependencies, understanding which replacement algorithms have been
+standardised, testing them in real environments, and managing the transition
+without breaking the systems people depend on every day.
 
 The short version: the risk is real but manageable. The work is to find the
-things that need protecting long-term, and start moving them to quantum-resistant
-encryption before the old methods stop working.
+things that need protecting over the long term and start moving them onto
+quantum-resistant foundations before the old ones give way.
