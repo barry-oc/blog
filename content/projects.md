@@ -65,13 +65,42 @@ vt-scanner scan ./samples
 
 ---
 
+## tls-audit
+
+**Audit any host's TLS, certificate, and post-quantum readiness.**
+
+A Python CLI that connects to a host and reports what it actually negotiates —
+certificate details, protocol versions, weak-cipher acceptance, and whether any
+post-quantum crypto is in play.
+
+{{< badge >}}Python{{< /badge >}} {{< badge >}}TLS{{< /badge >}} {{< badge >}}cryptography{{< /badge >}} {{< badge >}}CLI{{< /badge >}}
+
+**What it does**
+
+- Parses the certificate: subject, issuer, expiry, key type/size, signature algorithm, SANs
+- Verifies the chain against the system trust store
+- Probes which of TLS 1.0 / 1.1 / 1.2 / 1.3 are accepted
+- Tests RC4, 3DES, NULL, EXPORT, and anonymous cipher acceptance
+- Flags whether any post-quantum key exchange or signature is detected
+- JSON output; exits non-zero on any failure
+
+```bash
+pip install git+https://github.com/barry-oc/tls-audit.git
+tls-audit yourhost.com
+```
+
+→ [GitHub](https://github.com/barry-oc/tls-audit) · [Read the writeup](/posts/tls-audit-launch/)
+
+---
+
 ## In the pipeline
 
 I ship **one tool a week**. Current shortlist:
 
-- **`--diff` mode** for sec-headers — compare header posture before and after a config change
-- **Docker images** for both tools — ephemeral CI use, no local Python required
-- **More header checks** — `Clear-Site-Data`, `Cross-Origin-*` families
+- **OCSP stapling + certificate transparency** checks for tls-audit
+- **`--diff` mode** — compare TLS/header posture before and after a change
+- **Docker images** for all three tools — ephemeral CI use, no local Python required
+- **More header checks** for sec-headers — `Clear-Site-Data`, `Cross-Origin-*` families
 
 ---
 
