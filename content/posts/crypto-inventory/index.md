@@ -8,12 +8,6 @@ categories: ["cryptography"]
 description: "Before you can fix anything, you have to know where it lives. A practical guide to discovering and cataloguing every place encryption operates in your environment."
 ---
 
-{{< alert "info" >}}
-This is part of the *Post-Quantum Cryptography* series — a plain-language
-guide to what's coming, why it matters, and what to do about it. Start with
-[Part 1: The Day Encryption Stops Working](/posts/q-day) if you haven't read it.
-{{< /alert >}}
-
 Before you can fix anything, you have to know where it lives. In quantum
 readiness, that means understanding where cryptography is used, how it's
 configured, and what it protects.
@@ -22,8 +16,8 @@ Cryptography is everywhere now. Inside operating systems, woven through cloud
 platforms, embedded in APIs, baked into firmware, and hidden in hardware. Some of
 it is carefully maintained. Some of it is quietly forgotten. All of it matters.
 
-This post is about surfacing that complexity. A successful quantum migration
-starts with discovery, and discovery starts with inventory.
+Surfacing that complexity is the subject of this chapter. A successful quantum
+migration starts with discovery, and discovery starts with inventory.
 
 ---
 
@@ -110,24 +104,24 @@ retention requirement. This connection makes the inventory actionable.
 
 ---
 
-## Tools that help
+## Tools and automation
 
-Several commercial tools support cryptographic discovery at scale.
+Cryptographic discovery at scale requires tooling. Several categories of tools
+support this work.
 
-**IBM Guardium** specialises in data discovery, classifying sensitive
-information, and identifying encryption use across environments. It flags weak
-configurations, identifies compliance gaps, and can generate Cryptographic Bills
-of Materials (CBOMs).
+Data discovery platforms can classify sensitive information and identify
+encryption use across heterogeneous environments. They flag weak configurations,
+identify compliance gaps, and generate Cryptographic Bills of Materials (CBOMs).
 
-**Sandbox AQ** offers AQtive Guard, a platform that combines analysis with
-quantum readiness assessment. It scans your environment, identifies
-cryptographic assets, evaluates their vulnerability, and supports long-term
-crypto-agility. They also offer a structured Cryptographic Risk Assessment
-service that evaluates maturity, identifies gaps, classifies data, and delivers
-actionable reports.
+Quantum readiness platforms take this further, combining automated scanning with
+risk analytics. They identify cryptographic assets, assess vulnerability to
+quantum attack, and support long-term crypto-agility through structured risk
+assessments that evaluate maturity, classify data, and produce actionable
+reports.
 
-**ISARA** helps organisations locate and replace vulnerable cryptographic
-protocols, particularly in complex environments with embedded or legacy systems.
+For environments heavy with embedded or legacy systems, protocol-level scanners
+exist that locate and catalogue vulnerable cryptographic implementations where
+traditional agents cannot reach.
 
 To keep the inventory current, integrate these tools into your asset management
 platforms or CI/CD pipelines. Automation means your inventory reflects changes
@@ -136,13 +130,14 @@ your team can respond before weaknesses are exploited.
 
 ### A practical process
 
-If you're doing this manually, here's the sequence:
+Whether using automated tools or conducting a manual review, the sequence
+remains the same:
 
 1. **Define scope.** Which systems, environments, and networks come first? Start
    with high-value or high-risk areas.
 
-2. **Scan.** Use tools like AQtive Guard or Guardium to generate an initial list
-   of where encryption is used.
+2. **Scan.** Use automated discovery tools to generate an initial list of where
+   encryption is used.
 
 3. **Validate.** Work with system owners. Review configuration files, logs, and
    application settings. Automated scans miss things.
