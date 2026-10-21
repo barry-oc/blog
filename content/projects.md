@@ -93,17 +93,6 @@ tls-audit yourhost.com
 
 ---
 
-## In the pipeline
-
-I ship **one tool a week**. Current shortlist:
-
-- **OCSP stapling + certificate transparency** checks for tls-audit
-- **`--diff` mode** — compare TLS/header posture before and after a change
-- **Docker images** for all three tools — ephemeral CI use, no local Python required
-- **More header checks** for sec-headers — `Clear-Site-Data`, `Cross-Origin-*` families
-
----
-
 ## Want a tool?
 
 If there's a repetitive security task eating your time, I probably want to

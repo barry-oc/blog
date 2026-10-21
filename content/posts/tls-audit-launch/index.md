@@ -153,16 +153,6 @@ accepted — so it drops straight into CI.
 
 ---
 
-## What's next
-
-Same cadence as the other tools — one release a week. On the shortlist:
-
-- OCSP stapling and certificate transparency checks
-- A `--diff` mode to compare posture before and after a change
-- Deeper PQC detection as Python's TLS stack exposes negotiated groups
-
----
-
 **Run it against your own host.**
 [github.com/barry-oc/tls-audit](https://github.com/barry-oc/tls-audit)
 
