@@ -128,8 +128,7 @@ five or ten years from now. Those are the ones to address first.
 
 The rest of this series walks through that migration: which replacement
 algorithms NIST has standardised, how to test them in your own systems, and
-where the practical pitfalls are. **Part 2** covers the algorithm landscape —
-what's been chosen, what's been broken, and which ones to bet on.
+where the practical pitfalls are.
 
 The short version: the risk is real but manageable. The work is to find the
 things that need protecting long-term, and start moving them to quantum-resistant
