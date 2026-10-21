@@ -8,300 +8,295 @@ categories: ["cryptography"]
 description: "Before you can fix anything, you have to know where it lives. A practical guide to discovering and cataloguing every place encryption operates in your environment."
 ---
 
-Before you can fix anything, you have to know where it lives. In quantum
-readiness, that means understanding where cryptography is used, how it's
-configured, and what it protects.
+The first thing you learn in any migration project is that you can't secure what
+you can't see. Quantum readiness is no different. Before anyone upgrades an
+algorithm or swaps a certificate, the organisation has to answer a much simpler
+question: where is the cryptography actually sitting?
 
-Cryptography is everywhere now. Inside operating systems, woven through cloud
-platforms, embedded in APIs, baked into firmware, and hidden in hardware. Some of
-it is carefully maintained. Some of it is quietly forgotten. All of it matters.
+That question is harder than it sounds. Encryption has crept into nearly every
+layer of modern infrastructure. It lives in the obvious places — web servers,
+VPN concentrators, certificate stores — and in plenty of less obvious ones:
+embedded controllers, firmware images, backup tapes, configuration files,
+third-party SDKs. Some of it was deployed deliberately, with documentation and
+ownership. Some of it arrived bundled inside a vendor appliance five years ago
+and nobody has looked at it since.
 
-Surfacing that complexity is the subject of this chapter. A successful quantum
-migration starts with discovery, and discovery starts with inventory.
+All of it counts. A quantum computer won't care whether the RSA key it breaks
+was part of a carefully managed PKI or a forgotten TLS certificate on a
+development server. If the key protects data that still matters, the exposure is
+real.
 
----
-
-## Know what you have
-
-Inventorying cryptographic assets may be the hardest part of this transition.
-Unlike patching software or scanning endpoints, cryptographic elements rarely
-have centralized management. DevOps teams own some. Others are buried deep inside
-legacy applications. Many organisations don't know how many certificates they
-have, let alone which algorithms those certificates use or how long they're
-valid.
-
-You need to answer three questions:
-
-1. **What crypto is used?**
-2. **Where is it used?**
-3. **Who or what is using it?**
-
-Begin with the protocols and systems most likely to contain vulnerable
-cryptographic components: TLS configurations on web servers, VPN tunnels for
-remote access, digital signatures that validate software, certificates that
-secure APIs, firmware with embedded encryption, IoT devices with hardcoded keys,
-and encrypted data-at-rest.
-
-Every one of these may be using RSA, ECC, or another public-key system that
-won't survive the quantum shift. Finding them isn't just inventory. It's
-strategic defence.
+This chapter is about building the map. Discovery first, then classification,
+then the structures — like the Cryptographic Bill of Materials — that turn a
+one-off exercise into something durable.
 
 ---
 
-## What to look for
+## Three questions every inventory has to answer
 
-A useful inventory goes beyond counting certificates. It covers every place a
-cryptographic function appears.
+A cryptographic inventory isn't a list of certificates. It's the answer to three
+questions, asked repeatedly across every system you own:
 
-Scan your infrastructure for:
+1. **What crypto is in use?** Not just the protocols, but the specific
+   algorithms, key sizes, and configurations.
 
-- **TLS settings** in web applications and internal services.
-- **VPN connections** relying on Diffie-Hellman or elliptic curve key exchange.
-- **Certificates** used for authentication, code signing, and email encryption.
-- **Digital signatures** on firmware, drivers, and packages.
-- **Encrypted fields** in databases and backup archives.
-- **Cryptographic libraries** embedded in IoT and operational technology.
+2. **Where does it sit?** Which servers, which appliances, which codebases,
+   which third-party services.
 
-Review each item not just for the algorithm it uses, but for its purpose,
-lifespan, and level of exposure.
+3. **Who or what depends on it?** What breaks if it changes, what data does it
+   protect, and how long must that protection last.
 
-### Where to start
+Start with the surface area most likely to matter. TLS endpoints on public and
+internal services. VPN tunnels — site-to-site and client access. Digital
+signatures that verify firmware, packages, and application code. API
+certificates. Encrypted storage volumes. Hardcoded keys in IoT firmware.
 
-Start with the protocols and protections you already know are in use. Begin with
-TLS and VPNs — the most widely deployed cryptography in any enterprise. Then
-move to certificates, code signing mechanisms, firmware verification routines,
-data-at-rest encryption, and embedded encryption within IoT and OT devices.
-
-### What to document
-
-Look for specific cryptographic artifacts: public and private key pairs, digital
-certificates, session keys, key exchange protocols, and the algorithms in use —
-RSA, ECDSA, AES, and their variants.
-
-Trace how these elements protect data-in-motion, data-at-rest, and identity
-validation. Examine API traffic, software build pipelines, and remote access
-tools. Inventory every piece of software and hardware that uses or depends on
-encryption.
-
-Pay close attention to your endpoints. Which devices access sensitive data, and
-how is that data protected at the endpoint? What browsers, applications, and
-firmware versions are in use? In your network, trace how data moves, where it's
-encrypted, and which devices provide protection — gateways, proxies, edge
-devices, all of it.
-
-Don't overlook cloud infrastructure, especially when platform services abstract
-encryption away behind managed interfaces.
-
-Document the algorithms, key lengths, and cipher modes. Knowing whether a system
-uses RSA-2048 or AES-128 tells you exactly how exposed it is. Note whether each
-system supports crypto-agility — the ability to swap algorithms without
-rewriting the application.
-
-Finally, connect each artifact to the data it protects and how long that data
-must remain confidential. A certificate securing three-day session data is a
-different problem from one protecting medical records with a thirty-year
-retention requirement. This connection makes the inventory actionable.
+That list alone covers most of what runs in a typical enterprise. Each entry on
+it probably relies on RSA or ECC in some form, and both of those are on the
+clock.
 
 ---
 
-## Tools and automation
+## What you're actually looking for
 
-Cryptographic discovery at scale requires tooling. Several categories of tools
-support this work.
+Go beyond the obvious. A cryptographic inventory that only counts TLS
+certificates misses the bulk of the problem.
 
-Data discovery platforms can classify sensitive information and identify
-encryption use across heterogeneous environments. They flag weak configurations,
-identify compliance gaps, and generate Cryptographic Bills of Materials (CBOMs).
+### The checklist
 
-Quantum readiness platforms take this further, combining automated scanning with
-risk analytics. They identify cryptographic assets, assess vulnerability to
-quantum attack, and support long-term crypto-agility through structured risk
-assessments that evaluate maturity, classify data, and produce actionable
-reports.
+Scan for all of this:
 
-For environments heavy with embedded or legacy systems, protocol-level scanners
-exist that locate and catalogue vulnerable cryptographic implementations where
-traditional agents cannot reach.
+- **Transport encryption.** TLS on web servers, APIs, internal services, mail
+  servers, and database connections. Don't assume internal traffic is fine just
+  because it's behind a firewall. If it uses RSA or ECDH for key exchange, it's
+  in scope.
+- **VPNs.** IPsec and WireGuard tunnels, SSL VPN appliances, SD-WAN overlays.
+  Most established VPN architectures lean heavily on Diffie-Hellman or elliptic
+  curve key agreement.
+- **Certificates.** Not just the ones on web servers. Code-signing certificates,
+  email (S/MIME), client authentication, mutual TLS, and internal PKI
+  infrastructure. Expiry isn't the only concern — the algorithm underneath
+  matters.
+- **Firmware and device signatures.** Anything that boots from signed images.
+  Anything that validates a package before installation. If the signing key is
+  RSA or ECDSA, a future adversary can forge valid signatures.
+- **Data at rest.** Full-disk encryption, database column encryption, backup
+  encryption, encrypted archives. The algorithms used to wrap the data keys are
+  almost always asymmetric.
+- **Embedded and OT.** Industrial controllers, building management systems,
+  medical devices. These often have cryptographic functions baked in at the
+  factory with no update path.
 
-To keep the inventory current, integrate these tools into your asset management
-platforms or CI/CD pipelines. Automation means your inventory reflects changes
-as they happen. Set up alerting for unauthorised cryptographic components so
-your team can respond before weaknesses are exploited.
+For every item you find, document more than the algorithm. Capture its *purpose*
+(what function does it serve?), its *lifespan* (when was it deployed, when does
+it expire or get replaced?), and its *exposure* (is it reachable from the
+internet, a partner network, or only locally?).
 
-### A practical process
+### Where to begin
 
-Whether using automated tools or conducting a manual review, the sequence
-remains the same:
+Don't try to inventory everything at once. Start with the protocols you already
+know about. TLS and VPNs are universal — every organisation uses them, and
+they're the easiest to scan. From there, expand outward: certificates, code
+signing, firmware verification, storage encryption, and finally the embedded and
+operational technology that requires specialised tooling.
 
-1. **Define scope.** Which systems, environments, and networks come first? Start
-   with high-value or high-risk areas.
+### What belongs in each entry
 
-2. **Scan.** Use automated discovery tools to generate an initial list of where
-   encryption is used.
+For each cryptographic artifact, record the algorithm family (RSA, ECDSA, AES,
+etc.), the key length or curve, the cipher mode where applicable, and the
+protocol version. Note whether the implementation supports algorithm
+replacement without re-architecting the application — what we'll call
+crypto-agility later on.
 
-3. **Validate.** Work with system owners. Review configuration files, logs, and
-   application settings. Automated scans miss things.
-
-4. **Document.** Record the specific algorithms, key lengths, cipher modes, and
-   protocol versions.
-
-5. **Map.** Tie each cryptographic element to the data or function it protects.
-
-6. **Flag.** Mark each artifact by quantum vulnerability. RSA and ECC: high
-   risk. AES-128: flag for future upgrade.
-
-7. **Store.** Put it in a centralised format that can be updated over time and
-   reviewed by both security and compliance teams.
-
----
-
-## Building a Cryptographic Bill of Materials (CBOM)
-
-To manage cryptographic assets at scale, you need structure. That's where a
-Cryptographic Bill of Materials comes in. A CBOM is a schema extension of the
-Software Bill of Materials (SBOM), built to describe cryptographic components
-and their dependencies.
-
-A CBOM is particularly useful in development environments where cryptography is
-implemented within the software supply chain. It captures metadata about each
-cryptographic component — version, source, dependencies. This makes it easier to
-track vulnerabilities, plan replacements, and maintain crypto-agility.
-
-In practical terms, a CBOM documents which algorithms, keys, protocols, and
-certificates are in use. It captures expiration dates, key lengths, signing
-authorities, and usage context. This metadata tells you not just whether
-something is vulnerable, but how difficult it will be to replace and which
-business processes depend on it.
-
-When integrated with SBOMs, CBOMs reveal inherited cryptographic risk from
-third-party packages, open-source libraries, and vendor-supplied tools. That
-visibility strengthens procurement, supports secure development, and aligns with
-broader software assurance work.
-
-A CBOM is a working document, not a compliance checkbox. As post-quantum
-standards evolve and vendor tools mature, the CBOM helps you track changes,
-identify obsolete components, and coordinate upgrades across teams.
-
-### Creating a CBOM
-
-1. Integrate cryptographic scanning tools into your build pipeline.
-2. Use static analysis to detect cryptographic function calls and identify
-   libraries.
-3. Extract metadata for each cryptographic artifact: algorithm name, version,
-   key sizes, usage context, and whether it supports quantum-safe alternatives.
-4. Use a standardised format — the CBOM schema extension for CycloneDX is the
-   current reference.
-5. Store CBOMs in version control, where they can be reviewed, updated, and
-   audited.
-6. Automate CBOM generation as part of your release process so every new build
-   carries an associated cryptographic profile.
-7. Review CBOMs during security assessments, vendor evaluations, and compliance
-   reviews.
+Then connect the artifact to the data it protects. How sensitive is that data,
+and how long does its confidentiality need to hold? A TLS certificate securing
+session data with a one-hour lifespan is a fundamentally different priority from
+an encryption key wrapping medical records with a statutory thirty-year
+retention period. Tying technical findings to data classification is what turns
+the inventory from a compliance artefact into a decision-making tool.
 
 ---
 
-## Triage: from raw data to action
+## Tooling and automation
 
-Once you've identified cryptographic artifacts, you need triage — categorising
-findings by risk level, relevance, and actionability. Raw data isn't useful;
-prioritised intelligence is.
+No one does this by hand at scale. The tooling landscape falls into several
+categories.
 
-Start by categorising each finding on three axes: algorithm type, risk profile,
-and usage context.
+**Discovery scanners** can crawl networks, interrogate TLS endpoints, enumerate
+certificates from public and internal sources, and produce structured output.
+They handle the broad sweep — flagging weak configurations, expired
+certificates, and compliance gaps. Many can now export a Cryptographic Bill of
+Materials directly.
 
-- Findings involving RSA-2048 or ECC-based key exchange: **high risk** — they're
-  directly vulnerable to quantum decryption.
-- AES-128: **monitor** — flag for future upgrade as cryptanalysis evolves.
-- AES-256 or SHA-3: **low risk** for now, pending further research.
+**Quantum readiness platforms** go a step further. They correlate discovery data
+against known quantum-vulnerable algorithms, assign risk scores, and track
+crypto-agility across the estate. Some include professional services that
+combine the scan output with maturity assessments and regulatory mapping.
 
-Next, link these findings to your asset inventory and SBOM systems. A vulnerable
-key exchange in a third-party API should be reflected in your SBOM. A
-certificate used in both a cloud gateway and an internal microservice should
-have both dependencies visible and traceable.
+**Protocol-level analyzers** are for environments where agents can't run.
+Embedded systems, industrial controllers, legacy appliances — these need
+network-based fingerprinting. The tools are more specialised and the coverage is
+less complete, but they're the only option for devices you can't instrument.
 
-SBOM formats like CycloneDX and SPDX support custom metadata fields for
-cryptographic attributes. Importing triaged findings into these formats allows
-for richer risk modelling and traceability across the supply chain.
+Whatever you choose, the real value comes from integration. Plug the scanner
+into your CI/CD pipeline so new deployments get checked the moment they're
+built. Feed the output into your CMDB or asset management platform so the
+inventory stays current. Set up alerts for anything that introduces a
+vulnerable algorithm or an unauthorised certificate.
 
-Once linked, cryptographic findings can trigger tickets in vulnerability
-management systems, appear in audit checklists, or prompt review during patch
-cycles and third-party assessments.
+### The process, step by step
 
-To keep triage and inventory aligned:
+Whether the scan is automated or manual, the workflow is the same:
 
-- Use tags (e.g., `quantum-vulnerable`, `crypto-agile`, `legacy-only`) in SBOM
-  entries.
-- Integrate scanning tools with CI/CD pipelines so new issues are triaged as
-  builds are created.
-- Establish SLAs for cryptographic risk remediation based on severity, exposure,
-  and business impact.
-- Correlate CBOM entries with incident response and risk management systems so
-  failures can be traced and mitigated quickly.
-
-Linking triaged findings to SBOM platforms and asset inventories gives you
-visibility and control — the two things you need to coordinate upgrades, produce
-reports, and respond to new standards or vulnerabilities as they emerge.
-
----
-
-## Beyond the inventory
-
-A strong inventory is more than a list. It's the map you use to navigate your
-quantum transition. To make it actionable, go beyond the technical components
-and ask harder questions about the systems they protect.
-
-**Start with your data.** What are the highest-value datasets in your
-environment? Which ones carry privacy regulations or long-term confidentiality
-requirements? Some data matters for a day. Legal contracts, medical records, and
-source code may need to stay trustworthy for decades. Those are your
-high-priority items.
-
-**Look at your applications.** How do they store and secure the data they
-handle? Who uses those systems, and what happens if trust is broken?
-
-**Examine your endpoints.** Where is data stored? Which servers host sensitive
-information? What devices access it? Are any running old TLS configurations,
-outdated libraries, or unpatched firmware?
-
-**Review your network paths.** How does data move between endpoints? Is traffic
-encrypted the entire way? Where does it hit the cloud? Are you relying on
-third-party integrations with unknown cryptographic practices?
-
-**Classify each asset by readiness.** Label artifacts that rely on vulnerable
-algorithms as quantum-vulnerable. Note where crypto-agility is supported and
-where post-quantum tools are already deployed. This pre-migration status helps
-prioritise transitions and supports planning.
-
-**Think dynamic, not static.** A one-time scan is a snapshot, but cryptographic
-environments change constantly. Keys are added or replaced, certificates expire,
-and code updates shift libraries. Implement continuous discovery. Integrate
-scanning tools into CI/CD pipelines and asset management. Enable logging and
-alerts for unauthorised cryptographic changes.
-
-**Expect trouble with legacy systems.** Embedded devices and industrial
-equipment often run on platforms without modern management interfaces. They may
-use hardcoded keys or outdated libraries. Where automated tools fall short,
-manual audits and coordination with OT teams and device manufacturers will be
-necessary.
+1. **Scope it.** Pick your starting surface — a business unit, a network
+   segment, a set of critical applications. Don't boil the ocean.
+2. **Scan it.** Run the tools. Get the raw output.
+3. **Verify it.** Talk to the people who own the systems. Review configs, build
+   scripts, and deployment manifests. Scanners produce false positives and gaps;
+   human review closes them.
+4. **Document it.** Normalise everything into a consistent format. Algorithm,
+   key length, mode, version, owner, data classification.
+5. **Map it.** Connect each entry to the asset it protects and the business
+   process it supports.
+6. **Flag it.** RSA and ECC: high priority. AES-128: watch. AES-256 and SHA-3:
+   low risk for now.
+7. **Store it.** Put the inventory somewhere version-controlled and
+   queryable — not a spreadsheet that goes stale the moment it's saved.
 
 ---
 
-## This is where the work begins
+## The Cryptographic Bill of Materials
 
-Cryptographic inventory isn't a one-time project. It's an ongoing process built
-into how you manage systems, evaluate risk, and maintain compliance. The more
-complete your inventory, the more confident you can be in your ability to
-identify quantum risk.
+If an SBOM tells you what software components are in a product, a CBOM tells you
+what cryptography those components rely on. It's a structured extension of the
+SBOM standard, designed to capture cryptographic dependencies with the same
+rigour that SBOMs apply to library versions.
 
-The work starts here, with inventory. It's tedious, detailed, and necessary. The
-better you understand what you have, the more effectively you can protect it. In
-the quantum era, knowing where cryptography resides is the first step in keeping
-trust alive.
+Why does this matter? Because most cryptographic risk doesn't come from your own
+code. It comes from the library you imported, the framework you depended on, or
+the appliance your vendor shipped. A CBOM makes that inherited risk visible.
 
-When your inventory is complete, you'll know what cryptographic assets you have,
-what is at risk, where it lives, and what your options are for securing it. With
-the right tools and a clear process, you gain a detailed picture of where
-cryptography operates in your environment, which algorithms are in use, and
-where vulnerabilities exist.
+A well-formed CBOM records the algorithm, the implementation, the key length,
+the purpose (signing, encryption, key exchange), and any known quantum
+vulnerabilities. It ties each entry to the component that uses it and the
+supplier who provided it. This turns an abstract concern — "we might have RSA
+somewhere" — into something actionable: "version 2.3.1 of the authentication
+library uses RSA-2048 for JWT signing, and the fix is in version 2.4.0."
 
-That understanding is the foundation for everything that follows.
+Beyond development, CBOMs support procurement. When a vendor claims their
+product is quantum-ready, a CBOM lets you verify that claim instead of taking it
+on faith. They also support compliance: auditors increasingly expect evidence
+that cryptographic risk is being managed systematically, and a maintained CBOM
+is one of the strongest forms that evidence can take.
+
+### Building one
+
+1. Add cryptographic scanning to your build pipeline. Static analysis can
+   identify calls into crypto libraries even when the configuration is hidden.
+2. Extract the metadata: algorithm, library name and version, key parameters,
+   usage pattern.
+3. Express it in a standard format. The CycloneDX CBOM extension is the current
+   reference.
+4. Commit the result alongside your SBOM in version control.
+5. Generate a fresh CBOM with every release so it stays accurate as dependencies
+   change.
+6. Review it during security assessments, vendor evaluations, and architecture
+   reviews — not just at audit time.
+
+---
+
+## Turning findings into priorities
+
+Discovery produces data. Triage turns it into something you can act on.
+
+Every finding should be assessed on three dimensions: the algorithm's
+vulnerability to quantum attack, the sensitivity of the data it protects, and
+the difficulty of replacing it.
+
+RSA and ECC key exchange are immediately vulnerable once a cryptographically
+relevant quantum computer exists. Flag them as high priority regardless of where
+they sit. Symmetric algorithms like AES-128 sit in a middle tier — they're not
+directly broken by quantum algorithms, but the effective key strength is halved,
+which means an upgrade will be needed eventually. AES-256 and SHA-3-based
+constructions are fine for now.
+
+Next, link each finding into your broader operational systems. A vulnerable TLS
+configuration on an API gateway should create a ticket in your vulnerability
+management platform. A certificate shared between a cloud frontend and an
+internal service should appear in both asset records. The inventory only
+delivers value when it's connected to the systems that drive remediation.
+
+To keep the link live:
+
+- Tag assets with searchable labels: `quantum-vulnerable`, `crypto-agile`,
+  `legacy-no-upgrade-path`.
+- Wire the scanning tools into CI/CD so new findings surface in real time.
+- Define SLA timelines based on severity and exposure — not everything needs to
+  be fixed this quarter, but the highest-risk items need hard deadlines.
+- Tie CBOM entries to incident response playbooks. If a vulnerability drops in
+  a library you depend on, you should be able to identify every affected system
+  in minutes.
+
+---
+
+## What the inventory reveals
+
+A complete inventory does more than list encryption. It answers questions about
+risk that most organisations have never formally asked.
+
+**Which data matters most?** Walk through your datasets and ask how long each
+one needs to stay confidential. Transaction logs might have a short shelf life.
+Intellectual property, legal records, and personal health data might need
+decades. The data with the longest privacy tail should drive your migration
+schedule.
+
+**Which applications handle it?** Map the applications that touch your
+high-value data. How do they encrypt it in transit and at rest? What happens
+if the trust model breaks — can someone decrypt stored data, impersonate a user,
+or inject signed code?
+
+**Where are the weak endpoints?** Some devices will be easy to upgrade. Others
+won't. Find the servers running old TLS stacks, the applications with hardcoded
+ciphers, the firmware that hasn't seen an update since installation. Catalogue
+them now, because they'll take the longest to fix.
+
+**What's happening on the network?** Trace the paths your data travels. Is
+encryption applied end-to-end, or are there decryption points where traffic
+sits in the clear? Do third-party integrations introduce cryptography you don't
+control?
+
+**Where is crypto-agility possible?** Some systems were designed to swap
+algorithms. Most weren't. Identify which ones can be reconfigured and which need
+to be rebuilt. That distinction will determine your migration timeline more than
+anything else.
+
+**How do legacy and OT devices fit in?** These are the hardest problem. Embedded
+devices with cryptographic functions burned into silicon. Industrial controllers
+that can't be patched without a production outage. Equipment from vendors who
+have no post-quantum roadmap. You may not be able to fix these on the same
+schedule as your web servers, but you need to know they're there so they don't
+get forgotten.
+
+---
+
+## The inventory is never finished
+
+A one-time cryptographic audit has a shelf life measured in weeks. Certificates
+expire. Keys rotate. Code ships. New services come online. If your inventory
+lives in a static document, it's already wrong by the time you finish reading
+it.
+
+The goal is continuous discovery. Wire the scanning tools into the systems that
+already manage your infrastructure — CI/CD pipelines, asset databases,
+monitoring platforms. When something changes, the inventory should reflect it.
+When something appears that shouldn't — a self-signed certificate on a
+production endpoint, a legacy cipher enabled after an update — the right people
+should know immediately.
+
+None of this is glamorous. Inventory work rarely is. But it's the prerequisite
+for every decision that follows. You can't prioritise a migration if you don't
+know what you're migrating. You can't measure progress if you don't know where
+you started. And you can't claim quantum readiness if you never did the work
+to find out what you were running in the first place.
+
+This chapter describes the foundation. The chapters that follow build on it.
