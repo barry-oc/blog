@@ -6,6 +6,8 @@ series: ["ARTEX"]
 tags: ["artex", "pentesting", "offensive-security", "llm", "ai-security"]
 categories: ["security"]
 description: "ARTEX hands control of a penetration test to a large language model. Here's what it actually does, how a run works, and where the guardrails sit."
+featureimage: "img/covers/artex.svg"
+featureimagecaption: "ARTEX mapping a target during a run"
 ---
 
 Most security tools are deterministic. You give them a target and a checklist, they
